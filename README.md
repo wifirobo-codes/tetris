@@ -1,4 +1,4 @@
-# Tetris (Pygame)
+# tetris
 
 A modern Tetris clone by WifiCodes (wifirobo)
 

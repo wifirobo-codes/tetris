@@ -83,8 +83,17 @@ GREEN = (0,255,0)
 # ASSET PATHS
 # ---------------------------------
 
-GFX = "assets/Graphics"
-SFX = "assets/Audio"
+def get_resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+GFX = get_resource_path("assets/Graphics")
+SFX = get_resource_path("assets/Audio")
 
 # ---------------------------------
 # IMAGE LOADER
@@ -602,7 +611,9 @@ def draw_pause():
 # ---------------------------------
 
 def draw_game_over():
-
+    
+    screen.fill(BLACK)
+    
     draw_center(GAMEOVER_IMG, 120)
 
     draw_text(f"Score : {score}", WIDTH // 2 - 70, 330)
